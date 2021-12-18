@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 class API {
     private _token: string
     constructor(token: string) {
@@ -16,6 +16,16 @@ class API {
 
     public get token(): string {
         return this._token
+    }
+
+    async getAllUsers(): Promise<AxiosResponse<any, any>>{
+        if(this._token === "") throw new Error("No valid API token!");
+        
+        return await axios.get("http://addict-api.acmuic.org:3000/user/", {
+            headers: {
+                'Authorization': 'Bearer ' + this._token
+            }
+        });
     }
     
 }
