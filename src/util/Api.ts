@@ -27,6 +27,16 @@ class API {
             }
         });
     }
+
+    async getUser(name: string): Promise<AxiosResponse<any, any>>{
+        if(this._token === "") throw new Error("No valid API token!");
+        
+        return await axios.get("http://addict-api.acmuic.org:3000/user/" + name, {
+            headers: {
+                'Authorization': 'Bearer ' + this._token
+            }
+        });
+    }
     
 }
 export default API
