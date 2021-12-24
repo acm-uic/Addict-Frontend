@@ -6,7 +6,7 @@ const server: string = "http://addict-api.acmuic.org"
 
 function App() {
   // Create the api object and store its state
-  const [api, setAPI] = useState(new API(server));
+  const [api] = useState(new API(server));
   const [username, updateUsername] = useState("");
   const [password, updatePassword] = useState("");
   const [userdata, updateUserdata] = useState("");
@@ -19,8 +19,7 @@ function App() {
 
   
   async function handleSubmit(all: boolean): Promise<string> {
-    let res: API = await api.getTokenFromAPI(username, password)
-    setAPI(new API(res.token))
+    await api.getTokenFromAPI(username, password)
     if(all) {
       return JSON.stringify((await api.getAllUsers()).data)
     }
@@ -40,7 +39,7 @@ function App() {
         token:<br></br>{api.token}<br></br>
         <button className='btn btn-primary my-2' onClick={() => handleSubmit(false).then(users => updateUserdata(users)).catch(err => updateUserdata(JSON.stringify(err)))}>Login -Show My Info Only</button>
         <br></br>
-        <button className='btn btn-primary my-2' onClick={() => handleSubmit(true).then(users => updateUserdata(users)).catch(err => updateUserdata(JSON.stringify(err)))}>Login -Show All Users Info</button>
+        <button className='btn btn-primary my-2' onClick={() => handleSubmit(true).then(user => updateUserdata(user)).catch(err => updateUserdata(JSON.stringify(err)))}>Login -Show All Users Info</button>
       </div>
       {/* Create user form */}
       <div className="form-group">

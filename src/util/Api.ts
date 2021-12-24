@@ -4,6 +4,7 @@ class API {
     private _token: string | null;
     private _headers: object
     private _location: string
+    private _randomPassLength: number
 
     /**
      * The API utilities
@@ -14,7 +15,8 @@ class API {
         this._server = server;
         this._token = null;
         this._headers = {'Authorization': ''};
-        this._location = "WebDev"
+        this._location = "WebDev";
+        this._randomPassLength = 15;
     }
 
     /**
@@ -79,8 +81,34 @@ class API {
     async createUser(fname: string, lname: string, username: string, email: string, description: string): Promise<string> {
         if(this._token === null) throw new Error("Invalid Token");
     
-        console.log(fname + " " + lname)
-        return "Test";
+        {/*inspired by several online resources including: https://www.geeksforgeeks.org/how-to-generate-a-random-password-using-javascript/ */}
+        const lchars:string = "abcdefghijklmnopqrstuvwxyz"
+        const uchars:string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        const numbers:string = "1234567890"
+        const symbols:string = "!@#$%^&*?"
+        const allchars:string  = lchars + uchars + numbers + symbols
+        let password:string = ""
+        let i:number = 0
+
+        while(i<this._randomPassLength){
+            let nextIndex: number = Math.floor(Math.random()*allchars.length)
+            let nextChar:string = allchars[nextIndex]
+            password += nextChar
+            i++
+        }
+
+        await axios.post(this._server + '/user', {
+            commonName: "",
+            userName: username,
+            pass: password,
+            firstName: fname,
+            lastName: lname,
+            email: email,
+            title: description,
+            location: this._location
+        });
+
+        return password
     }
 }
 export default API
