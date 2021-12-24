@@ -19,9 +19,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build; jsdoc -c jsdoc-config.json;",
+    "clean": "rm -rf ./build ./docs",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dockerbuild": "DOCKER_BUILDKIT=1 docker build -t christianbingman/addict-site:latest .",
+    "dockerbuildmultiarch": "DOCKER_BUILDKIT=1 docker buildx build -t christianbingman/addict-site:latest --platform linux/amd64,linux/arm64,linux/arm/v7 --push ."
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.7"
   }
 }
