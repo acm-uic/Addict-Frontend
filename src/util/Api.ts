@@ -81,7 +81,7 @@ class API {
     async createUser(fname: string, lname: string, username: string, email: string, description: string): Promise<string> {
         if(this._token === null) throw new Error("Invalid Token");
     
-        {/*inspired by several online resources including: https://www.geeksforgeeks.org/how-to-generate-a-random-password-using-javascript/ */}
+        /*inspired by several online resources including: https://www.geeksforgeeks.org/how-to-generate-a-random-password-using-javascript/ */
         const lchars:string = "abcdefghijklmnopqrstuvwxyz"
         const uchars:string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         const numbers:string = "1234567890"
@@ -100,13 +100,14 @@ class API {
         await axios.post(this._server + '/user', {
             commonName: "",
             userName: username,
-            pass: password,
+            password: password,
             firstName: fname,
             lastName: lname,
             email: email,
             title: description,
-            location: this._location
-        });
+            location: this._location,
+            enabled: true
+        }, {headers: this._headers as AxiosRequestHeaders});
 
         return password
     }
