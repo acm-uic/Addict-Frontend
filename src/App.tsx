@@ -16,6 +16,7 @@ function App() {
   const [newEmail, updateNewEmail] = useState("");
   const [newDescription, updateNewDescription] = useState("");
   const [newUserPassword, updateNewUserPassword] = useState("");
+  const [removeUsername, updateRemoveUsername] = useState("");
 
   
   async function handleSubmit(all: boolean): Promise<string> {
@@ -55,6 +56,12 @@ function App() {
         <input onChange={event => updateNewDescription(event.target.value)} type="text" name="newdescription" className='form-control my-2' />
         <button className='btn btn-primary my-2' onClick={() => api.createUser(newFirstName, newLastName, newUsername, newEmail, newDescription).then(password => updateNewUserPassword(password)).catch(err => alert(err))}>Create User</button>
       </div>
+      <div className="form-group">
+        <label htmlFor="removeusername">Remove User:</label>
+        <input onChange={event => updateRemoveUsername(event.target.value)} type="text" name="removeusername" className='form-control my-2' />
+        <button className='btn btn-primary my-2' onClick={() => api.removeUser(removeUsername).then(password => updateRemoveUsername(removeUsername)).catch(err => alert(err))}>Delete User</button>
+      </div>
+      
       {/* Print the data generated at login*/}
       <p>{userdata}</p>
       <p>{newUserPassword}</p>

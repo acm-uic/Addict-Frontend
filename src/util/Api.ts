@@ -111,5 +111,19 @@ class API {
 
         return password
     }
+    
+    /**
+     * 
+     * @param username -the name of the user to remove
+     * @returns {AxiosResponse<any, any>} The Axios response data
+     */
+    async removeUser(username: string): Promise<string> {
+        if(this._token === null) throw new Error("Invalid Token");
+    
+        return await axios.delete(this._server + "/user/" + username, {
+            headers: this._headers as AxiosRequestHeaders
+        });
+    }
+
 }
 export default API
