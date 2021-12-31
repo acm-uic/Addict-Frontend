@@ -43,6 +43,7 @@ class API {
     public get token(): string {
         return this._token || ""
     }
+    
 
     /**
      * Get all AD users
@@ -113,14 +114,13 @@ class API {
     }
     
     /**
-     * 
-     * @param username -the name of the user to remove
-     * @returns {AxiosResponse<any, any>} The Axios response data
+     * Removes a user
+     * @param username - The name of the user to remove
      */
-    async removeUser(username: string): Promise<string> {
+    async removeUser(username: string): Promise<void> {
         if(this._token === null) throw new Error("Invalid Token");
     
-        return await axios.delete(this._server + "/user/" + username, {
+        await axios.delete(this._server + "/user/" + username, {
             headers: this._headers as AxiosRequestHeaders
         });
     }
