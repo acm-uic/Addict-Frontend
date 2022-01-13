@@ -18,13 +18,21 @@ class API {
         this._location = "WebDev";
         this._randomPassLength = 15;
         let cookies = new Cookies();
-        let {token, server} = cookies.get("token");
-        console.log(token)
-        if(token) {
-            this._token = token;
-            this._headers = {'Authorization': 'Bearer ' + this._token}
-            this._server = server
-        }else this._server = address!;
+        if(!cookies.get("token")) {
+            this._server = address!;
+        }
+        else {
+            let {token, server} = cookies.get("token");
+            console.log(token)
+            if(token) {
+                this._token = token;
+                this._headers = {'Authorization': 'Bearer ' + this._token}
+                this._server = server
+            }
+            else {
+                this._server = address!; 
+            }
+        }
     }
 
     /**
