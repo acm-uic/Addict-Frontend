@@ -1,34 +1,28 @@
-import React, { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import { HomeAuthenticated } from './components/HomeAuthenticated';
-import { HomeUnauthenticated } from './components/HomeUnauthenticated';
-import { Users } from './components/Users';
 import API from './util/Api'
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import { HomeUnauthenticated } from './components/HomeUnauthenticated';
 
 const server: string = "http://addict-api.acmuic.org"
 
 function App() {
+  const navigate = useNavigate();
   const [api, setAPI] = useState(new API(server));
-  const [users, setUsers] = useState("");
   let username = "";
   let password = "";
-  // Create the api object and store its state
   
   const [loggedIn, updateLoggedIn]  = useState(false);
   const [loggedInUser, updateLoggedInUser] = useState("");
   
   async function handleSubmit(): Promise<void> {
     setAPI(await api.getTokenFromAPI(username, password))
-    setUsers(JSON.stringify((await api.getAllUsers()).data))
     updateLoggedInUser((await api.getUser(username)).data.displayName)
     updateLoggedIn(true);
-  }
-
-  function GetHome(): JSX.Element {
-    if(loggedIn){
-      return <Users users={users} />
-    }
-    return <HomeUnauthenticated />
+    const cookies = new Cookies();
+    cookies.set("token", {token: api.token, server: server}, {path: '/'})
+    navigate('/authorized')
   }
 
   function GetNavbar(): JSX.Element {
@@ -55,13 +49,26 @@ function App() {
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <div className="navbar-nav">
+                <Link to="/authorized" state={{token: api.token}} className="nav-item nav-link">Home</Link>
+                <Link to="/users" className="nav-item nav-link">Users</Link>
+                <Link to="/create" className="nav-item nav-link">Create</Link>
+                <Link to="/password-reset" className="nav-item nav-link">Password Reset</Link>
+            </div>
           <h4 className="mx-3 text-light">Welcome, {loggedInUser}</h4>
         </div>
       </nav>
     )
   }
 
+  function GetHome(): JSX.Element {
+    if(loggedIn){
+      return <Outlet />
+    }
+    return <HomeUnauthenticated />
+  }
+  
   return (
     <div className="App">
       <GetNavbar />

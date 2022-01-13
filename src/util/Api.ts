@@ -1,4 +1,5 @@
 import axios, { AxiosRequestHeaders, AxiosResponse } from "axios"
+import Cookies from "universal-cookie";
 class API {
     private _server: string;
     private _token: string | null;
@@ -11,12 +12,19 @@ class API {
      * @class
      * @param {string} server The server address
      */
-    constructor(server: string) {
-        this._server = server;
+    constructor(address?: string) {
         this._token = null;
         this._headers = {'Authorization': ''};
         this._location = "WebDev";
         this._randomPassLength = 15;
+        let cookies = new Cookies();
+        let {token, server} = cookies.get("token");
+        console.log(token)
+        if(token) {
+            this._token = token;
+            this._headers = {'Authorization': 'Bearer ' + this._token}
+            this._server = server
+        }else this._server = address!;
     }
 
     /**
