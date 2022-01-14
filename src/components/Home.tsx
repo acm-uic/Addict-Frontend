@@ -1,10 +1,7 @@
-import { useLocation } from "react-router-dom"
-
-
-interface token {
-    token: string
-}
+import { useSelector } from "react-redux"
+import { apiReducerState } from "../redux/reducers/apikey"
 
 export default function Home(): JSX.Element {
-    return <h1>Home</h1>
+    const apikey = useSelector((state: apiReducerState) => state.key)
+    return <h1>Home {apikey}</h1>
 }
