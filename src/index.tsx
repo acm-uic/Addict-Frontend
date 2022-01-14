@@ -9,20 +9,29 @@ import Home from './components/Home';
 import Users from './components/Users';
 import Create from './components/Create';
 import PasswordReset from './components/PasswordReset';
+import {createStore} from 'redux';
+import { Provider } from 'react-redux';
+import apikeyReducer from './redux/reducers/apikey';
 
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+const store = createStore(apikeyReducer, {key: "", loggedIn: false, server: "http://addict-api.acmuic.org", user: ""}, composeWithDevTools());
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="home" element={<HomeUnauthenticated />} />
-          <Route path="authorized" element={<Home />} />
-          <Route path="users" element={<Users />} />
-          <Route path="create" element={<Create />} />
-          <Route path="password-reset" element={<PasswordReset />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="home" element={<HomeUnauthenticated />} />
+            <Route path="authorized" element={<Home />} />
+            <Route path="users" element={<Users />} />
+            <Route path="create" element={<Create />} />
+            <Route path="password-reset" element={<PasswordReset />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );
