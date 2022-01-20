@@ -1,4 +1,20 @@
 import axios, { AxiosRequestHeaders, AxiosResponse } from "axios"
+interface User {
+    dn: string
+    sAMAccountName: string
+    whenCreated: string
+    pwdLastSet: string
+    userAccountControl: string
+    cn: string
+    description: string
+    groups: Group[]
+}
+interface Group {
+    dn: string
+    cn: string
+    description: string
+    groupType: string
+}
 class API {
     private _server: string;
     private _token: string | null;
@@ -56,12 +72,12 @@ class API {
      * Get all AD users
      * @returns {Promise<AxiosResponse<any, any>>} The Axios response
      */
-    async getAllUsers(): Promise<AxiosResponse<any, any>>{
+    async getAllUsers(): Promise<User[]>{
         if(this._token === null) throw new Error("No valid API token!");
         
-        return await axios.get(this._server + "/user/", {
+        return (await axios.get(this._server + "/user/", {
             headers: this._headers as AxiosRequestHeaders
-        });
+        })).data;
     }
 
     /**
