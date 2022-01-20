@@ -8,6 +8,6 @@ export default function Users(): JSX.Element {
     const apikey = useSelector((state: apiReducerState) => state.key)
     let api = new API(server, apikey);
     let [users, setUsers] = useState("");
-    api.getAllUsers().then(res => setUsers(JSON.stringify(res.data))).catch(err => setUsers(err))
+    api.getAllUsers().then(res => setUsers(JSON.stringify(res.map(user => user.cn)))).catch(err => setUsers(err))
     return (<div>{users}</div>)
 }
