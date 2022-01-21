@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './App.css';
 import API from './util/Api'
 import { Link, Outlet, useNavigate } from 'react-router-dom';
@@ -9,16 +8,17 @@ import { apiReducerState } from './redux/reducers/apikey';
 function App() {
   const dispatch = useDispatch()
   const navigate = useNavigate();
-  const [api, setAPI] = useState(new API(useSelector((state: apiReducerState) => state.server)));
+  const server: string = useSelector((state: apiReducerState) => state.server);
   let username = "";
   let password = "";
+  let token: string = useSelector((state: apiReducerState) => state.key);
   const loggedIn = useSelector((state: apiReducerState) => state.loggedIn)
   const loggedInUser = useSelector((state: apiReducerState) => state.user)
   
   async function HandleSubmit(): Promise<void> {
-    setAPI(await api.getTokenFromAPI(username, password))
-    dispatch({type: "UPDATE_USER", payload: (await api.getUser(username)).data.displayName})
-    dispatch({type: "UPDATE_KEY", payload: api.token})
+    token = await API.getTokenFromAPI(username, password, server)
+    dispatch({type: "UPDATE_USER", payload: (await API.getUser(username, token, server)).cn})
+    dispatch({type: "UPDATE_KEY", payload: token})
     navigate('/authorized')
   }
 
