@@ -1,33 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { HomeUnauthenticated } from './components/HomeUnauthenticated';
-import Home from './components/Home';
-import Users from './components/Users';
-import Create from './components/Create';
-import PasswordReset from './components/PasswordReset';
+import HomeUnauthenticated from './pages/HomeUnauthenticated';
+import Home from './pages/Home';
+import Users from './pages/Users';
+import Create from './pages/Create';
+import PasswordReset from './pages/PasswordReset';
 import {createStore} from 'redux';
 import { Provider } from 'react-redux';
 import apikeyReducer from './redux/reducers/apikey';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
+import AuthenticatedNav from './components/AuthenticatedNav';
 
 const store = createStore(apikeyReducer, {key: "", loggedIn: false, server: "http://addict-api.acmuic.org", user: ""}, composeWithDevTools());
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <AuthenticatedNav />
         <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="home" element={<HomeUnauthenticated />} />
-            <Route path="authorized" element={<Home />} />
-            <Route path="users" element={<Users />} />
-            <Route path="create" element={<Create />} />
-            <Route path="password-reset" element={<PasswordReset />} />
-          </Route>
+          <Route path="/" element={<HomeUnauthenticated />} />
+          <Route path="authorized" element={<Home />} />
+          <Route path="users" element={<Users />} />
+          <Route path="create" element={<Create />} />
+          <Route path="password-reset" element={<PasswordReset />} />
         </Routes>
       </BrowserRouter>
     </Provider>
