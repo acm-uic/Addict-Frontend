@@ -1,0 +1,107 @@
+$card-height: 150px;
+.user-card {
+    margin-bottom: 1em;
+    width: 75%;
+    height: $card-height;
+    background: #3F444A;
+    border-radius: 10px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.user-card:hover {
+    box-shadow: 0px 0px 10px 3px #D80000;
+    cursor: pointer;
+}
+
+.user-card::after {
+    content: '';
+    z-index: inherit;
+    position: absolute;
+    width: 200px;
+    height: $card-height;
+    left: 0px;
+    top:0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top: 150px solid #D4D3D8;
+    border-right: 200px solid transparent;
+}
+
+.user-card::before {
+    content: '';
+    position: absolute;
+    z-index: inherit;
+    width: 200px;
+    height: $card-height;
+    right: 0px;
+    top:0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: 150px solid #D4D3D8;
+    border-left: 200px solid transparent;
+}
+
+.arrow {
+    position: absolute;
+    right: 0.125em;
+    top: 0.25em;
+    font-size: 5em;
+    color: #D80000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cn {
+    font-weight: bold;
+    margin-top: 7px;
+    margin-left: 7px;
+    margin-bottom: 2px;
+}
+
+.sAMAccountName {
+    margin-left: 7px;
+}
+
+.mid {
+    position: absolute;
+    left: 8em;
+    top: 0px;
+    color: white;
+    font-weight: bold;
+    margin-left: 4em;
+}
+
+.side {
+    z-index: 10;
+}
+
+.dn {
+    margin-top: 7px;
+}
+
+.mid div {
+    margin-bottom: 2px;
+}
+
+.pw {
+    margin-left: -1.75em;
+}
+
+.groups {
+    margin-left: -3.75em;
+    inline-size: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 1.5em;
+}
+
+.created {
+    margin-left: -5.75em;
+}
+
+.description {
+    margin-left: -7.5em;
+}

@@ -1,5 +1,5 @@
 import axios, { AxiosRequestHeaders } from "axios"
-interface User {
+export interface User {
     dn: string
     sAMAccountName: string
     whenCreated: string
@@ -9,7 +9,7 @@ interface User {
     description: string
     groups: Group[]
 }
-interface Group {
+export interface Group {
     dn: string
     cn: string
     description: string
