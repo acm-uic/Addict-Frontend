@@ -4,7 +4,7 @@ import UserView from "../components/UserView";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API, { User } from "../util/Api";
 import './Users.scss'
-
+import { Link, useNavigate } from "react-router-dom";
 export default function Users(): JSX.Element {
     const server = useSelector((state: apiReducerState) => state.server);
     const apikey = useSelector((state: apiReducerState) => state.key)
@@ -21,7 +21,8 @@ export default function Users(): JSX.Element {
         return (<div className="container-lg">
                 <div className="search-bar">
                     <input type="text" placeholder="Search" name="search" id="search-bar" onChange={event => setSearchQuery(event.target.value)} />
-                    <button className="add-user">+</button>
+                    
+                    <Link to="/create" className="nav-item nav-link"><button className="add-user">+</button></Link>
                 </div>
             </div>)
     }
