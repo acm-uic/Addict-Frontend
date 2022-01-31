@@ -36,6 +36,30 @@ class API {
     }
 
     /**
+     * Change an aleady authenticaed User's password
+     * @param {string} username - Username to login with
+     * //@param {string} password - Password to login with
+     * @param {string} newpass = Password to change to
+     * @param {string} token - Token received upon authentication
+     * @returns {Promise<string>} The stringified post response.
+     */
+     static async changePassword(username: string, newpass: string, token: string, server:string): Promise<string>{
+        
+        const ptokres = await axios.post(server + "/api/passwordreset", {
+            username: username},
+            {headers: API._getHeader(token)}
+        );
+        
+        const res = await axios.put(server + "/user/" + username +"/password", {
+            password: newpass},
+            {headers: API._getHeader(ptokres.data)} // should this *not* be a bearer token?
+                                                    // do we also need to then send "token"?
+        );
+        
+        return JSON.stringify(res)
+    }
+
+    /**
      * Get all AD users
      * @returns {Promise<User[]>} The Axios response
      */
