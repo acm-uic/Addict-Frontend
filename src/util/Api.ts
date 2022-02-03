@@ -36,24 +36,35 @@ class API {
     }
 
     /**
-     * Change an aleady authenticaed User's password
-     * @param {string} username - Username to login with
-     * //@param {string} password - Password to login with
-     * @param {string} newpass = Password to change to
-     * @param {string} token - Token received upon authentication
-     * @returns {Promise<string>} The stringified post response.
+     * Get token for password change for a user
+     * @param {string} username - Username for which token is needed
+     * @param {string} token - Token received upon authentication for webdev user
+     * @returns {Promise<string>} The password reset token
      */
-     static async changePassword(username: string, newpass: string, token: string, server:string): Promise<string>{
+     static async passwordToken(username: string, token: string, server:string): Promise<string>{
         
-        const ptokres = await axios.post(server + "/api/passwordreset", {
+        const res = await axios.post(server + "/api/passwordreset", {
             username: username},
             {headers: API._getHeader(token)}
         );
+
+        return res.data
+    }
+
+    /**
+     * Change a user's password
+     * @param {string} username = Username of authenitcated user that can change password
+     * @param {string} newpass = Password to replace old password
+     * @param {string} token = Token to for authenticated user changing password
+     * @returns {Promise<string>} The stringified put response.
+     */
+     static async changePassword(username: string, newpass: string, token: string, server:string): Promise<string>{
+        
+        const ptok:string = JSON.stringify(this.passwordToken(username,token,server))
         
         const res = await axios.put(server + "/user/" + username +"/password", {
             password: newpass},
-            {headers: API._getHeader(ptokres.data)} // should this *not* be a bearer token?
-                                                    // do we also need to then send "token"?
+            {headers: API._getHeader(ptok)}
         );
         
         return JSON.stringify(res)
