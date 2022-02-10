@@ -29,11 +29,19 @@
 .add-user {
     background-color: #D80000;
     color: white;
+    
     border-radius: 30px;
     border-style: none;
     width: 3em;
     height: 3em;
+    
+}
+
+.add-user>p {
+    color: white;
     font-weight: bold;
+    padding-top: 2px;
+    padding-left: 2px;
 }
 
 .animate-left {
