@@ -5,6 +5,7 @@ interface props {
     user: User
 }
 export default function UserView(props: props): JSX.Element {
+
     return (<div className="user-card container-sm">
         <div className="side">
             <div className="cn">{props.user.cn}</div>
@@ -17,6 +18,5 @@ export default function UserView(props: props): JSX.Element {
             <div className="created">Created: {props.user.whenCreated}</div>
             <div className="description">{props.user.description}</div>
         </div>
-        <span className='arrow'>→</span>
     </div>)
 }

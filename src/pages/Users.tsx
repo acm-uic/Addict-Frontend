@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import UserEditView from "../components/UserEditView";
 import UserView from "../components/UserView";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API, { User } from "../util/Api";
@@ -28,6 +29,18 @@ export default function Users(): JSX.Element {
 
     return (<div className="container-lg">
         {getSearchBar()}
-            {users.filter(user => user.cn.toLowerCase().includes(searchQuery.toLowerCase()) || user.sAMAccountName.toLowerCase().includes(searchQuery.toLowerCase())).map(user => <UserView user={user} />)}
+            {users.filter(
+                user => 
+                    user.cn
+                        .toLowerCase().includes(searchQuery.toLowerCase()) || user.sAMAccountName.toLowerCase().includes(searchQuery.toLowerCase()))
+                        .map(user => 
+                            <div className="user-container"> 
+                                <div className="user-view-container">
+                                    <UserView user={user} />
+                                </div>
+                                <div className="user-edit-container">
+                                    <UserEditView user={user} />
+                                </div>
+                            </div> )}
         </div>)
 }

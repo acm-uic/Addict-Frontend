@@ -32,6 +32,7 @@ class API {
             username: username,
             password: password
         });
+        if(res.status !== 200) throw new Error("Invalid username or password");
         return res.data.token
     }
 

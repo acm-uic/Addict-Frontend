@@ -35,3 +35,45 @@
     height: 3em;
     font-weight: bold;
 }
+
+.animate-left {
+    transition: transform 0.5s;
+    position: relative;
+}
+
+.animate-left--animating {
+    transform: translateX(-100%);
+}
+
+.user-view{
+    margin-top: -166px;
+    z-index: 100;
+}
+
+.user-view-edit{
+    transform: translateX(100%);
+}
+
+.arrow-container{
+    position: relative
+}
+
+.arrow {
+    position: absolute;
+    right: 13%;
+    top: 0.25em;
+    font-size: 5em;
+    color: #D80000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: transform 0.5s;
+}
+
+.arrow:hover {
+    text-shadow: 0px 4px 4px #D80000;
+    cursor: pointer;
+}
+
+.arrow--animating {
+    //transform: translateX(575%) translateY(-40%) rotate(180deg) scale(0.5);
+    color: white;
+}

@@ -1,4 +1,6 @@
 $card-height: 150px;
+$card-width: 150px;
+
 .user-card {
     margin-bottom: 1em;
     width: 75%;
@@ -10,11 +12,6 @@ $card-height: 150px;
     margin-right: auto;
     display: flex;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.user-card:hover {
-    box-shadow: 0px 0px 10px 3px #D80000;
-    cursor: pointer;
 }
 
 .user-card::after {
@@ -45,21 +42,20 @@ $card-height: 150px;
     border-left: 200px solid transparent;
 }
 
-.arrow {
-    position: absolute;
-    right: 0.125em;
-    top: 0.25em;
-    font-size: 5em;
-    color: #D80000;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
+
 
 .cn {
     font-weight: bold;
     margin-top: 7px;
     margin-left: 7px;
     margin-bottom: 2px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: $card-width;
+    white-space: nowrap;
 }
+
+
 
 .sAMAccountName {
     margin-left: 7px;
