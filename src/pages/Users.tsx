@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API, { User } from "../util/Api";
 import './Users.scss'
-
+import { Link, useNavigate } from "react-router-dom";
 export default function Users(): JSX.Element {
     const server = useSelector((state: apiReducerState) => state.server);
     const apikey = useSelector((state: apiReducerState) => state.key)
