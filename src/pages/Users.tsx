@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import UserEditView from "../components/UserEditView";
 import UserView from "../components/UserView";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API, { User } from "../util/Api";
 import './Users.scss'
-import { Link, useNavigate } from "react-router-dom";
 export default function Users(): JSX.Element {
     const server = useSelector((state: apiReducerState) => state.server);
     const apikey = useSelector((state: apiReducerState) => state.key)
