@@ -21,13 +21,13 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <AuthenticatedNav />
-        <Routes>
-          <Route path="/" element={<HomeUnauthenticated />} />
-          <Route path="authorized" element={<Home />} />
-          <Route path="users" element={<Users />} />
-          <Route path="create" element={<Create />} />
-          <Route path="password-reset" element={<PasswordReset />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<HomeUnauthenticated />} />
+            <Route path="authorized" element={<Home />} />
+            <Route path="users" element={<Users />} />
+            <Route path="create" element={<Create />} />
+            <Route path="password-reset" element={<PasswordReset />} />
+          </Routes>
       </BrowserRouter>
     </Provider>
     
