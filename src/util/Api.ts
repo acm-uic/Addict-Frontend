@@ -32,9 +32,44 @@ class API {
             username: username,
             password: password
         });
-        if(res.status !== 200) throw new Error("Invalid username or password");
         return res.data.token
     }
+
+    /**
+     * Get token for password change for a user
+     * @param {string} username - Username for which token is needed
+     * @param {string} token - Token received upon authentication for webdev user
+     * @returns {Promise<string>} The password reset token
+     */
+     static async passwordToken(username: string, token: string, server:string): Promise<string>{
+        
+        const res = await axios.post(server + "/api/passwordreset", {
+            username: username},
+            {headers: API._getHeader(token)}
+        );
+
+        return res.data
+    }
+
+    /**
+     * Change a user's password
+     * @param {string} username = Username of user for which password change is requested
+     * @param {string} newpass = Password to replace old password
+     * @param {string} token = Token from authenticated user changing password
+     * @returns {Promise<string>} The stringified put response.
+     */
+     static async changePassword(username: string, newpass: string, token: string, server:string): Promise<string>{
+        
+        const ptok:string = JSON.stringify(this.passwordToken(username,token,server))
+        
+        const res = await axios.put(server + "/user/" + username +"/password", {
+            password: newpass},
+            {headers: API._getHeader(ptok)}
+        );
+        
+        return JSON.stringify(res)
+    }
+
 
     /**
      * Get all AD users
