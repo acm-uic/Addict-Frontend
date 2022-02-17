@@ -30,16 +30,24 @@ export default function Users(): JSX.Element {
     return (<div className="container-lg">
         {getSearchBar()}
             {users.filter(
-                user => 
+                (user: User) => 
                     user.cn
                         .toLowerCase().includes(searchQuery.toLowerCase()) || user.sAMAccountName.toLowerCase().includes(searchQuery.toLowerCase()))
-                        .map(user => 
+                        .map((user: User) => 
                             <div className="user-container"> 
-                                <div className="user-view-container">
+                                <div className="user-view-container animate-left" id={"view-" + user.cn}>
                                     <UserView user={user} />
+                                    <div className="arrow"  onClick={() => {
+                                        document.getElementById("view-" + user.cn)!.classList.toggle("animate-left--animating")
+                                        document.getElementById("edit-view-" + user.cn)!.classList.toggle("animate-left-edit--animating")
+                                    }}>→</div>
                                 </div>
-                                <div className="user-edit-container">
+                                <div className="user-edit-container animate-left" id={"edit-view-" + user.cn}>
                                     <UserEditView user={user} />
+                                    <div className="edit-arrow" onClick={() => {
+                                        document.getElementById("view-" + user.cn)!.classList.toggle("animate-left--animating")
+                                        document.getElementById("edit-view-" + user.cn)!.classList.toggle("animate-left-edit--animating")
+                                    }} >→</div>
                                 </div>
                             </div> )}
         </div>)
