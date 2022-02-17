@@ -29,12 +29,10 @@
 .add-user {
     background-color: #D80000;
     color: white;
-    
     border-radius: 30px;
     border-style: none;
     width: 3em;
     height: 3em;
-    
 }
 
 .add-user>p {
@@ -44,44 +42,45 @@
     padding-left: 2px;
 }
 
+.user-edit-container{
+    position: relative;
+    transform: translateX(100%);
+    margin-top: -17.5vh;
+}
+
 .animate-left {
     transition: transform 0.5s;
-    position: relative;
 }
 
 .animate-left--animating {
-    transform: translateX(-100%);
+    transform: translate(-100%);
 }
 
-.user-view{
-    margin-top: -166px;
-    z-index: 100;
+.animate-left-edit--animating {
+    transform: translateX(0%);
 }
 
-.user-view-edit{
-    transform: translateX(100%);
+.user-container {
+    position: relative;
+    width: 100%;
 }
-
-.arrow-container{
-    position: relative
-}
-
 .arrow {
     position: absolute;
-    right: 13%;
-    top: 0.25em;
-    font-size: 5em;
+    right: 14%;
+    top: 25%;
+    font-size: 4rem;
+    font-weight: bold;
     color: #D80000;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    transition: transform 0.5s;
-}
-
-.arrow:hover {
-    text-shadow: 0px 4px 4px #D80000;
     cursor: pointer;
 }
 
-.arrow--animating {
-    //transform: translateX(575%) translateY(-40%) rotate(180deg) scale(0.5);
+.edit-arrow{
+    position: absolute;
+    left: 13%;
+    top: 0px;
+    font-size: 2rem;
+    font-weight: bold;
     color: white;
+    transform: rotate(180deg);
+    cursor: pointer;
 }
