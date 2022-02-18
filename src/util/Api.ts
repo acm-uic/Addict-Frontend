@@ -155,6 +155,7 @@ class API {
             lastName: lname,
             email: email,
             title: description,
+            userName: username,
             enabled: enabled,
             passwordExpires: passwordExpires
         }, {headers: API._getHeader(token)});
