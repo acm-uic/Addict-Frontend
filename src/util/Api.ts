@@ -136,7 +136,31 @@ class API {
         return password
     }
 
-    
+    /**
+     * updates a user
+     * @param {string} fname - User's first name
+     * @param {string} lname - User's last name
+     * @param {string} username - User's username (or netid)
+     * @param {string} email - User's email
+     * @param {string} description - The user's description (netid - pronouns)
+     * @param {boolean} enabled - If user is enabled
+     * @param {boolean} passwordExpires - If password expires
+     * @returns {Promise} the put result Promise
+     */
+     static async changeUser(fname: string, lname: string, username: string, email: string, description: string,enabled: boolean,passwordExpires: boolean, token: string, server: string): Promise<object> {
+
+        let res = await axios.put(server + '/user/' + username, {
+            commonName: "",
+            firstName: fname,
+            lastName: lname,
+            email: email,
+            title: description,
+            enabled: enabled,
+            passwordExpires: passwordExpires
+        }, {headers: API._getHeader(token)});
+
+        return res
+    }
     
     /**
      * Removes a user
