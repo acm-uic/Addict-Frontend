@@ -147,10 +147,10 @@ class API {
      * @param {boolean} passwordExpires - If password expires
      * @returns {Promise} the put result Promise
      */
-     static async changeUser(fname: string, lname: string, username: string, email: string, description: string,enabled: boolean,passwordExpires: boolean, token: string, server: string): Promise<object> {
+     static async changeUser(cname: string, fname: string, lname: string, username: string, email: string, description: string,enabled: boolean,passwordExpires: boolean, token: string, server: string): Promise<object> {
 
         let res = await axios.put(server + '/user/' + username, {
-            commonName: "",
+            commonName: cname,
             firstName: fname,
             lastName: lname,
             email: email,
