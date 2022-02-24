@@ -8,7 +8,7 @@ import API, { User } from "../util/Api";
 import './Users.scss'
 export default function Users(): JSX.Element {
     const server = useSelector((state: apiReducerState) => state.server);
-    const apikey = useSelector((state: apiReducerState) => state.key)
+    const apikey = useSelector((state: apiReducerState) => state.key);
     let [searchQuery, setSearchQuery] = useState("");
     let [users, setUsers] = useState<User[]>([]);
 
