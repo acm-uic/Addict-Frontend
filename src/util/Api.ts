@@ -48,7 +48,7 @@ class API {
             {headers: API._getHeader(token)}
         );
 
-        return res.data
+        return res.data.token 
     }
 
     /**
@@ -60,7 +60,7 @@ class API {
      */
      static async changePassword(username: string, newpass: string, token: string, server:string): Promise<string>{
         
-        const ptok:string = JSON.stringify(this.passwordToken(username,token,server))
+        const ptok:string = await this.passwordToken(username,token,server)
         
         const res = await axios.put(server + "/user/" + username +"/password", {
             password: newpass},
