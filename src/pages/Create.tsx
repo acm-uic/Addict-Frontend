@@ -1,7 +1,7 @@
 
 import { useSelector } from "react-redux";
 import { apiReducerState } from "../redux/reducers/apikey";
-import API, { User } from "../util/Api";
+import API from "../util/Api";
 export default function Create(): JSX.Element {
     let firstName: string = ""
     let lastName: string = ""
