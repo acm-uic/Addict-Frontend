@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import UserEditView from "../components/UserEditView";
 import UserView from "../components/UserView";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API, { User } from "../util/Api";
 import './Users.scss'
 export default function Users(): JSX.Element {
     const server = useSelector((state: apiReducerState) => state.server);
     const apikey = useSelector((state: apiReducerState) => state.key);
+    const [searchParams, setSearchParams] = useSearchParams();
     let [searchQuery, setSearchQuery] = useState("");
     let [users, setUsers] = useState<User[]>([]);
 
     // Load only once
     useEffect(() => {
         API.getAllUsers(server, apikey).then(users => setUsers(users)).catch(err => console.log(err))
+        console.log(searchParams.get("token"))
     }, [])
     
 
