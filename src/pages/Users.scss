@@ -45,6 +45,7 @@
 .user-edit-container{
     position: relative;
     transform: translateX(100%);
+    display: none;
     margin-top: -17.5vh;
 }
 
@@ -58,6 +59,7 @@
 
 .animate-left-edit--animating {
     transform: translateX(0%);
+    display: block;
 }
 
 .user-container {
