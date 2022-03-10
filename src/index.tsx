@@ -7,6 +7,7 @@ import HomeUnauthenticated from './pages/HomeUnauthenticated';
 import Home from './pages/Home';
 import Users from './pages/Users';
 import Create from './pages/Create';
+import ChangePassword from './pages/ChangePassword';
 import PasswordReset from './pages/PasswordReset';
 import {createStore} from 'redux';
 import { Provider } from 'react-redux';
@@ -27,6 +28,7 @@ ReactDOM.render(
             <Route path="users" element={<Users />} />
             <Route path="create" element={<Create />} />
             <Route path="password-reset" element={<PasswordReset />} />
+            <Route path="change-password" element={<ChangePassword />} />
           </Routes>
       </BrowserRouter>
     </Provider>
