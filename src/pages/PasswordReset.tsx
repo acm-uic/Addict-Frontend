@@ -10,7 +10,8 @@ export default function PasswordReset(): JSX.Element {
     const apikey = useSelector((state: apiReducerState) => state.key);
 
     async function ResetPassword() {
-        alert(await(API.passwordToken(username,apikey,server)));
+        alert("http://localhost:3000/change-password?token=" + await(API.passwordToken(username,apikey,server)));
+        
     }
     return (
     <div>
