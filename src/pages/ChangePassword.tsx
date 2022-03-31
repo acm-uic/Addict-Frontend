@@ -23,7 +23,7 @@ export default function ChangePassword(): JSX.Element {
         <label><h2>Username:</h2></label>
         <input type="text" onChange = {event => username = event.target.value}/><br/>
         <h2>New password</h2>
-        <input type="text" onChange = {event => newpass = event.target.value}/><br/>
+        <input type="password" onChange = {event => newpass = event.target.value}/><br/>
         
         <input type="button" value="Submit" onClick={ChangePass}/>
     </div>)
