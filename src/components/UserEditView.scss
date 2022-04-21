@@ -71,3 +71,33 @@ input:hover, input:focus {
     margin-top: 0.5rem;
     margin-left: 3rem;
 }
+
+.add-remove-group {
+    flex-direction: row;
+    width: 100%;
+}
+
+.add-remove-group button {
+    width: 50%;
+}
+
+.apply-button{
+    position: absolute;
+    right: 0.5em;
+    top: 0.25em;
+    background-color: green;;
+    z-index: 1;
+    width: 5rem;
+    height: 2.5rem;
+    color: white;
+}
+
+.add-button{
+    background-color: green;
+    color: white;
+}
+
+.remove-button{
+    background-color: red;
+    color: white;
+}

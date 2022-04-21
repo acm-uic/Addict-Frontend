@@ -46,7 +46,7 @@
     position: relative;
     transform: translateX(100%);
     display: none;
-    margin-top: -17.5vh;
+    margin-top: -21vh;
 }
 
 .animate-left {
@@ -58,8 +58,9 @@
 }
 
 .animate-left-edit--animating {
-    transform: translateX(0%);
     display: block;
+    transform: translateX(0%);
+    
 }
 
 .user-container {
