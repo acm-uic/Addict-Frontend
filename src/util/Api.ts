@@ -1,4 +1,6 @@
 import axios, { AxiosRequestHeaders } from "axios"
+import { createSolutionBuilderHost } from "typescript"
+import apikeyReducer from "../redux/reducers/apikey"
 export interface User {
     dn: string
     sAMAccountName: string
@@ -11,7 +13,7 @@ export interface User {
 }
 export interface Group {
     dn: string
-    cn: string
+    cn: string //
     description: string
     groupType: string
 }
@@ -68,6 +70,36 @@ class API {
         return JSON.stringify(res)
     }
 
+    /**
+     * Add user to group
+     * @param {string} username = Username of user being added to group
+     * @param {string} group = Group user is being added to
+     * @param {string} token = Token from authenticated user
+     * @returns {Promise<boolean>} The status of action
+     */
+    static async addUserToGroup(username: string, group: string, token: string, server: string): Promise<boolean> {
+        const res = await axios.post(server + "/group/" + group + "/user/" + username, {headers: API._getHeader(token)})
+        if (res.status == 200) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * remove user from group
+     * @param {string} username = Username of user being added to group
+     * @param {string} group = Group user is being added to
+     * @param {string} token = Token from authenticated user
+     * @returns {Promise<boolean>} = The status of action
+     */
+    static async removeUserFromGroup(username: string, group: string, token: string, server: string): Promise<boolean> {
+        const res = await axios.delete(server + "/group/" + group + "/user/" + username, {headers: API._getHeader(token)})
+        if (res.status == 200) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Get all AD users
