@@ -12,13 +12,13 @@ function getDatePlusYear(dateString:string): string {
     return date.toDateString();
 }
 export default function UserView(props: props): JSX.Element {
+
     let n = parseInt(props.user.pwdLastSet);
     let date = new Date(n/1e4 - 1.16444736e13);
     let dateString = date.toUTCString();
-    let expiration = new Date(date.setFullYear(date.getFullYear() + 1))
-    // let expirationString = expiration.toUTCString()
 
     let expire = getDatePlusYear(props.user.pwdLastSet)
+
     return (<div className="user-card container-sm">
         <div className="side">
             <div className="cn">{props.user.cn}</div>
