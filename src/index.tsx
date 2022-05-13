@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomeUnauthenticated from './pages/HomeUnauthenticated';
 import Home from './pages/Home';
 import Users from './pages/Users';
 import Create from './pages/Create';
 import ChangePassword from './pages/ChangePassword';
-import PasswordReset from './pages/PasswordReset';
+import Page404 from './pages/Page404';
 import {createStore} from 'redux';
 import { Provider } from 'react-redux';
 import apikeyReducer from './redux/reducers/apikey';
@@ -23,12 +22,11 @@ ReactDOM.render(
       <BrowserRouter>
         <AuthenticatedNav />
           <Routes>
-            <Route path="/" element={<HomeUnauthenticated />} />
-            <Route path="authorized" element={<Home />} />
-            <Route path="users" element={<Users />} />
-            <Route path="create" element={<Create />} />
-            <Route path="password-reset" element={<PasswordReset />} />
+            <Route path="admin" element={<Home />} />
+            <Route path="admin/users" element={<Users />} />
+            <Route path="admin/create" element={<Create />} />
             <Route path="change-password" element={<ChangePassword />} />
+            <Route path="*" element={<Page404 />} />
           </Routes>
       </BrowserRouter>
     </Provider>
