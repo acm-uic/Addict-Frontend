@@ -24,10 +24,11 @@ export default function Home(): JSX.Element {
     }
 
 
-    return (<div>
+    return (<div className="container-sm">
     <input onChange={event => username = event.target.value}
      type="text" name="username" id="username" placeholder='Username' aria-label='username'></input>
     <input type="password" name="password" onChange={event => password = event.target.value}
      id="password" placeholder='Password' aria-controls='password'></input>
-    <div className="button" onClick={() => {HandleSubmit()}}>Login</div><br /> <h3>{apikey}</h3></div>)
+    <div className="button" onClick={() => {HandleSubmit()}}>Login</div>
+    <br /> <h3>{apikey}</h3></div>)
 }
