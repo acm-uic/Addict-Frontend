@@ -2,6 +2,9 @@ import { useSelector } from "react-redux";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API from "../util/Api";
 import { useSearchParams } from "react-router-dom";
+import "./ChangePassword.scss";
+import background from "../img/people.jpeg";
+import logo from "../img/logo.png";
 
 export default function ChangePassword(): JSX.Element {
     let username: string = ""
@@ -18,13 +21,15 @@ export default function ChangePassword(): JSX.Element {
         }
     }
     return (
-    <div>
+    <body>
         <h1>Change password</h1><br/>
-        <label><h2>Username:</h2></label>
-        <input type="text" onChange = {event => username = event.target.value}/><br/>
-        <label><h2>New password:</h2></label>
-        <input type="password" onChange = {event => newpass = event.target.value}/><br/>
-        
-        <input type="button" value="Submit" onClick={ChangePass}/>
-    </div>)
+        <div id = "login">
+            <img src={logo}/><br/>
+            <label><h2>Username:</h2></label>
+            <input type="text" defaultValue={"Username"} onChange = {event => username = event.target.value}/><br/>
+            <label><h2>New password:</h2></label>
+            <input type="password" defaultValue={"password"} onChange = {event => newpass = event.target.value}/><br/>
+            <div className="button" onClick={ChangePass}>Submit</div>
+        </div>
+    </body>)
 }
