@@ -22,14 +22,19 @@ export default function ChangePassword(): JSX.Element {
     }
     return (
     <body>
-        <h1>Change password</h1><br/>
-        <div id = "login">
-            <img src={logo}/><br/>
-            <label><h2>Username:</h2></label>
-            <input type="text" defaultValue={"Username"} onChange = {event => username = event.target.value}/><br/>
-            <label><h2>New password:</h2></label>
-            <input type="password" defaultValue={"password"} onChange = {event => newpass = event.target.value}/><br/>
-            <div className="button" onClick={ChangePass}>Submit</div>
+        <div id="change-password">
+            <h1>Change password</h1><br/>
+            <div id = "login">
+                <img src={logo}/><br/>
+                <label><h2>Username:</h2></label>
+                <input type="text" defaultValue={"Username"} onChange = {event => username = event.target.value}/><br/>
+                <label><h2>New password:</h2></label>
+                <input type="password" defaultValue={"password"} onChange = {event => newpass = event.target.value}/><br/>
+                <div className="button" onClick={ChangePass}>Submit</div>
+            </div>
+            <footer>
+                <small>Author of page: Adrian Knight</small>
+            </footer>
         </div>
     </body>)
 }
