@@ -15,7 +15,6 @@ export default function Users(): JSX.Element {
     // Load only once
     useEffect(() => {
         API.getAllUsers(server, apikey).then(users => setUsers(users)).catch(err => console.log(err))
-        setUsers([{cn: "Christian Bingman", dn: "CN=Christian Bingman,OU=Users,DC=acmuic,DC=org", whenCreated: "0", pwdLastSet: "0", description: "Test Description", sAMAccountName: "cbingm2", userAccountControl: "0", groups: []}])
     }, [])
     
     function getTableRow(name: String, email: String, groups: Group[], username: String): JSX.Element{
