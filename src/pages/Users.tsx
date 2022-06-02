@@ -26,31 +26,19 @@ export default function Users(): JSX.Element {
                 </div>
             </div>)
     }
-    let userEditStatus : {[key:string] : boolean} = {};
-    const userClickHandler = (user: User) => {
-        userEditStatus[user.cn]? userEditStatus[user.cn] = false: userEditStatus[user.cn] = true;
-        console.log(`${user.cn}User with cn has edit status of ${userEditStatus[user.cn]}`)
-        // document.getElementById("view-" + user.cn)!.classList.toggle("animate-left--animating")
-        // document.getElementById("edit-view-" + user.cn)!.classList.toggle("animate-left-edit--animating")
-    }
     return (<div className="container-lg">
         {getSearchBar()}
+        <table className="table">
+            <thead>
+                <tr><th scope="col">NAME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">GROUP(S)</th>
+                <th scope="col">USERNAME</th>
+                <th scope="col">EDIT</th>
+                <th scope="col">ACTIVE</th></tr>
+            </thead>
+        </table>
             {users.filter(
-                (user: User) => 
-                    user.cn
-                        .toLowerCase().includes(searchQuery.toLowerCase()) || user.sAMAccountName.toLowerCase().includes(searchQuery.toLowerCase()))
-                        .map((user: User) => 
-                            <div className="user-container"> 
-                                <div className={`user-view-container animate-left ${userEditStatus[user.cn]? `animate-left--animating`:`animate-left-edit--animating`}`} id={"view-" + user.cn}>
-                                    <UserView user={user} />
-                                    <div className="arrow"  onClick={() => userClickHandler(user)}>→</div>
-                                </div>
-                                <div className={`user-edit-container animate-left ${userEditStatus[user.cn]? `animate-left-edit--animating`:`animate-left--animating`}`}>
-                                {/* <div className="user-edit-container animate-left" id={"edit-view-" + user.cn}> */}
-                                    <UserEditView user={user} />
-                                    
-                                    <div className="edit-arrow" onClick={() => userClickHandler(user)} >→</div>
-                                </div>
-                            </div> )}
+                (user: User) => {})}
         </div>)
 }
