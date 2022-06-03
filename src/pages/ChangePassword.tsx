@@ -21,7 +21,6 @@ export default function ChangePassword(): JSX.Element {
         }
     }
     return (
-    <body>
         <div id="change-password">
             
             <div id = "login">
@@ -29,15 +28,13 @@ export default function ChangePassword(): JSX.Element {
                 <img src={logo}/><br/>
                 </div>
                 <h1>Change password</h1><br/>
-                <label><h2>Username:</h2></label>
-                <input type="text" defaultValue={"Username"} onChange = {event => username = event.target.value}/><br/>
-                <label><h2>New password:</h2></label>
-                <input type="password" defaultValue={"password"} onChange = {event => newpass = event.target.value}/><br/>
+                {/* <label><h2>Username:</h2></label> */}
+                <input type="text" placeholder={"Username"} onChange = {event => username = event.target.value}/><br/>
+                {/* <label><h2>New password:</h2></label> */}
+                <input type="password" placeholder={"New password"} onChange = {event => newpass = event.target.value}/><br/>
                 <div className="button" onClick={ChangePass}>Submit</div>
             </div>
         </div>
-        {/* <footer>
-            <small>Author of page: Adrian Knight</small>
-        </footer> */}
-    </body>)
+        
+    )
 }
