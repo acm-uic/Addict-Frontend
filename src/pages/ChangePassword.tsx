@@ -36,8 +36,8 @@ export default function ChangePassword(): JSX.Element {
                 <div className="button" onClick={ChangePass}>Submit</div>
             </div>
         </div>
-        <footer>
+        {/* <footer>
             <small>Author of page: Adrian Knight</small>
-        </footer>
+        </footer> */}
     </body>)
 }
