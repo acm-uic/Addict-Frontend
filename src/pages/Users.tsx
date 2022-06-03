@@ -23,11 +23,16 @@ export default function Users(): JSX.Element {
     function getSearchBar(): JSX.Element {
         return (<div className="container-lg">
                 <div className="search-bar">
-                    <input type="text" placeholder="Search" name="search" id="search-bar" onChange={event => setSearchQuery(event.target.value)} />
-                    <Link to="/create" className="nav-item nav-link add-user"><p>+</p></Link>
+                    <input type="text" placeholder="Search" name="search" id="search-input" onChange={event => setSearchQuery(event.target.value)} />
+                    <div className="show-active-box">
+                        <p id="show-active-text">Show Only Active</p>
+                        <input type="checkbox" id="show-active-checkbox"/>
+                    </div>
+                    <Link to="/create" className="nav-item nav-link add-user"><p>Add User</p></Link>
                 </div>
             </div>)
     }
+
     let userEditStatus : {[key:string] : boolean} = {};
     const userClickHandler = (user: User) => {
         userEditStatus[user.cn]? userEditStatus[user.cn] = false: userEditStatus[user.cn] = true;
