@@ -29,16 +29,15 @@ export default function Users(): JSX.Element {
     }
 
     function getSearchBar(): JSX.Element {
-        return (<div className="container-lg">
+        return (
                 <div className="search-bar">
                     <input type="text" placeholder="Search" name="search" id="search-input" onChange={event => setSearchQuery(event.target.value)} />
                     <div className="show-active-box">
                         <p id="show-active-text">Show Only Active</p>
-                        <input type="checkbox" id="show-active-checkbox"/>
+                        <input type="checkbox"/>
                     </div>
-                    <Link to="/create" className="nav-item nav-link add-user"><p>Add User</p></Link>
-                </div>
-            </div>)
+                    <Link to="/admin/create" className="nav-item nav-link add-user"><p>Add User</p></Link>
+                </div>)
     }
     return (<div className="container-lg">
         {getSearchBar()}

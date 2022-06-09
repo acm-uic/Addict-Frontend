@@ -1,14 +1,5 @@
 #search-input {
-    width: 45%;
-    border-radius: 15px;
-    border-color: black;
-    padding: 10px;
-    padding-left: 10px;
-    border-width: 1px;
-    background-color: transparent;
-    margin: 5px;
-    margin-top: 2px;
-    margin-right: 15px;
+    width: 50%;
 }
 
 .search-bar {
@@ -35,6 +26,10 @@
 }
 
 .add-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background-color: #19c61f;
     color: white;
     border-radius: 30px;
@@ -47,8 +42,8 @@
     color: white;
     font-weight: bold;
     text-align: center;
-    padding-top: 2px;
-    padding-left: 2px;
+    margin-top:auto;
+    padding-top:.25em;
 }
 
 .user-edit-container{
