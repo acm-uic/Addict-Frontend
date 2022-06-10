@@ -39,6 +39,7 @@ export default function Users(): JSX.Element {
                     <Link to="/admin/create" className="nav-item nav-link add-user"><p>Add User</p></Link>
                 </div>)
     }
+    
     return (<div className="container-lg">
         {getSearchBar()}
         <table className="table">
