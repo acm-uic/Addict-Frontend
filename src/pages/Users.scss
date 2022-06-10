@@ -1,3 +1,46 @@
+$switch-background-disabled: #EEEEEE;
+$switch-background-enabled: #00AA00;
+.pensvg {
+    width: 30px;
+    color: #D90000;
+    filter: invert(17%) sepia(35%) saturate(6194%) hue-rotate(348deg) brightness(108%) contrast(130%);
+}
+
+.edit-button:hover {
+    cursor: pointer
+}
+
+.enable-switch {
+    width: 60px;
+    height: 30px;
+    background-color: $switch-background-disabled;
+    border-radius: 50px;
+    box-shadow: inset 0 0 3px #222222;
+    position: relative;
+    
+    transition: background-color 0.5s;
+}
+
+.enable-switch::after {
+    transition: transform 0.5s;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    content: '';
+    width: 26px;
+    height: 26px;
+    background-color: white;
+    border-radius: 100%;
+}
+
+.enable-switch-enabled {
+    background-color: $switch-background-enabled;
+}
+
+.enable-switch-enabled::after {
+    transform: translateX(30px);
+}
+
 #search-bar {
     width: 100%;
     border-radius: 15px;
