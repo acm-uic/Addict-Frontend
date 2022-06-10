@@ -20,12 +20,16 @@ export default function Create(): JSX.Element {
 
         <label><h2>First name:</h2></label>
         <input type="text" onChange={event => firstName = event.target.value}/><br/>
+
         <label><h2>Last name:<br /></h2></label>
         <input type="text" onChange={event => lastName = event.target.value}/><br/>
+
         <label><h2>Username:<br /></h2></label>
         <input type="text" onChange={event => username = event.target.value}/><br/>
+
         <label><h2>Email:<br /></h2></label>
         <input type="text" onChange={event => email = event.target.value}/><br/>
+        
         <label><h2>Description:<br /></h2></label>
         <input type="text" onChange={event => description = event.target.value}/><br/>
 
