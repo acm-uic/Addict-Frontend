@@ -25,9 +25,9 @@ export default function ChangePassword(): JSX.Element {
             
             <div id = "login">
                 <div id = "img">
-                <img src={logo}/><br/>
+                <img id="logo" src={logo}/><br/>
                 </div>
-                <h1>Change password</h1><br/>
+                <h1>Change password</h1>
                 {/* <label><h2>Username:</h2></label> */}
                 <input type="text" placeholder={"Username"} onChange = {event => username = event.target.value}/><br/>
                 {/* <label><h2>New password:</h2></label> */}
