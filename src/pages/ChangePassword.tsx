@@ -8,7 +8,8 @@ import logo from "../img/logo.png";
 
 export default function ChangePassword(): JSX.Element {
     let username: string = ""
-    let newpass: string = ""
+    let newPass: string = ""
+    let conPass: string = ""
 
     const server = useSelector((state: apiReducerState) => state.server);
     const [searchParams, setSearchParams] = useSearchParams();
@@ -17,7 +18,7 @@ export default function ChangePassword(): JSX.Element {
         const apikey = searchParams.get("token")
         console.log(apikey)
         if (apikey) {
-            alert(await API.changePassword(username,newpass,apikey,server));
+            alert(await API.changePassword(username,newPass,apikey,server));
         }
     }
     return (
@@ -29,9 +30,9 @@ export default function ChangePassword(): JSX.Element {
                 </div>
                 <h1>Change password</h1>
                 {/* <label><h2>Username:</h2></label> */}
-                <input type="text" placeholder={"Username"} onChange = {event => username = event.target.value}/><br/>
+                <input type="text" placeholder={"New Password"} onChange = {event => newPass = event.target.value}/><br/>
                 {/* <label><h2>New password:</h2></label> */}
-                <input type="password" placeholder={"New password"} onChange = {event => newpass = event.target.value}/><br/>
+                <input type="password" placeholder={"Confirm Password"} onChange = {event => conPass = event.target.value}/><br/>
                 <div className="button" onClick={ChangePass}>Submit</div>
             </div>
         </div>
