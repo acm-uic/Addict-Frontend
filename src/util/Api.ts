@@ -79,7 +79,7 @@ class API {
      */
     static async addUserToGroup(username: string, group: string, token: string, server: string): Promise<boolean> {
         const res = await axios.post(server + "/group/" + group + "/user/" + username, {headers: API._getHeader(token)})
-        if (res.status == 200) {
+        if (res.status === 200) {
             return true;
         } else {
             return false;
@@ -94,7 +94,7 @@ class API {
      */
     static async removeUserFromGroup(username: string, group: string, token: string, server: string): Promise<boolean> {
         const res = await axios.delete(server + "/group/" + group + "/user/" + username, {headers: API._getHeader(token)})
-        if (res.status == 200) {
+        if (res.status === 200) {
             return true;
         } else {
             return false;
