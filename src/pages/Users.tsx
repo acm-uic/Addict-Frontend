@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import UserEditView from "../components/UserEditView";
-import UserView from "../components/UserView";
 import { Link } from "react-router-dom";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API, { User, Group } from "../util/Api";
+import pensolid from "../svg/pen-solid.svg"
 import './Users.scss'
 export default function Users(): JSX.Element {
     const server = useSelector((state: apiReducerState) => state.server);
@@ -23,19 +22,23 @@ export default function Users(): JSX.Element {
             <td>{email}</td>
             <td>{groups.join('\n')}</td>
             <td>{username}</td>
-            <td></td>
-            <td></td>
+            <td><div className="edit-button"><img className="pensvg" src={pensolid} alt="Edit Pen" /></div></td>
+            <td><div className="enable-switch"></div></td>
         </tr>
     }
 
     function getSearchBar(): JSX.Element {
-        return (<div className="container-lg">
+        return (
                 <div className="search-bar">
-                    <input type="text" placeholder="Search" name="search" id="search-bar" onChange={event => setSearchQuery(event.target.value)} />
-                    <Link to="/create" className="nav-item nav-link add-user"><p>+</p></Link>
-                </div>
-            </div>)
+                    <input type="text" placeholder="Search" name="search" id="search-input" onChange={event => setSearchQuery(event.target.value)} />
+                    <div className="show-active-box">
+                        <p id="show-active-text">Show Only Active</p>
+                        <input type="checkbox"/>
+                    </div>
+                    <Link to="/admin/create" className="nav-item nav-link add-user"><p>Add User</p></Link>
+                </div>)
     }
+    
     return (<div className="container-lg">
         {getSearchBar()}
         <table className="table">

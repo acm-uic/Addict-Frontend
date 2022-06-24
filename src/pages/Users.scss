@@ -1,45 +1,87 @@
-#search-bar {
-    width: 100%;
-    border-radius: 15px;
-    border-color: black;
-    padding: 10px;
-    padding-left: 10px;
-    border-width: 1px;
-    background-color: transparent;
-    margin: 5px;
-    margin-top: 2px;
-    margin-right: 15px;
+$switch-background-disabled: #EEEEEE;
+$switch-background-enabled: #00AA00;
+.pensvg {
+    width: 30px;
+    color: #D90000;
+    filter: invert(17%) sepia(35%) saturate(6194%) hue-rotate(348deg) brightness(108%) contrast(130%);
 }
 
-.search-bar::after {
-    content: '→';
+.edit-button:hover {
+    cursor: pointer
+}
+
+.enable-switch {
+    width: 60px;
+    height: 30px;
+    background-color: $switch-background-disabled;
+    border-radius: 50px;
+    box-shadow: inset 0 0 3px #222222;
+    position: relative;
+    
+    transition: background-color 0.5s;
+}
+
+.enable-switch::after {
+    transition: transform 0.5s;
     position: absolute;
-    right: 2.75em;
-    top: 0.125em;
-    font-weight: bold;
-    font-size: 20pt;
+    left: 2px;
+    top: 2px;
+    content: '';
+    width: 26px;
+    height: 26px;
+    background-color: white;
+    border-radius: 100%;
+}
+
+.enable-switch-enabled {
+    background-color: $switch-background-enabled;
+}
+
+.enable-switch-enabled::after {
+    transform: translateX(30px);
+}
+
+#search-input {
+    width: 50%;
 }
 
 .search-bar {
-    margin: 2em;
+    margin: 1em;
     position: relative;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-active-box{
+    margin: 1em;
+    display: flex;
+    align-items: center;
+}
+
+#show-active-text{
+    margin: 0.5em;
 }
 
 .add-user {
-    background-color: #D80000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #00D93D;
     color: white;
     border-radius: 30px;
     border-style: none;
-    width: 3em;
+    width: 7em;
     height: 3em;
 }
 
 .add-user>p {
     color: white;
     font-weight: bold;
-    padding-top: 2px;
-    padding-left: 2px;
+    text-align: center;
+    margin-top:auto;
+    padding-top:.25em;
 }
 
 .user-edit-container{
