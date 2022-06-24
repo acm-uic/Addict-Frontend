@@ -1,6 +1,14 @@
-.back {
-    position: relative;
+#home {
+    display: flex;
+    align-items: center;
+    background: url(/img/people.jpeg) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-clip: padding-box;
     text-align: center;
+    height: 100vh;
 }
 
 #acm {

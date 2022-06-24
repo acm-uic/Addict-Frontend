@@ -27,10 +27,12 @@ export default function Home(): JSX.Element {
     }
 
     return (
-        <div className='back'>
-            <img id='acm' src={people}></img>
-            <div id='box'>
+        <div id='home'>
+            <div id="login">
+                <div id="img">
                 <img src = {logo}></img>
+                </div>
+                
                 <input id='username' type='text' placeholder='Username' onChange={event => username = event.target.value}></input>
                 <input id='password' type='password' placeholder="Password" onChange={event => password = event.target.value}></input>
                 <div className='button' onClick={() => {HandleSubmit()} }>Login</div>
