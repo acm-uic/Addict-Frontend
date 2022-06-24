@@ -1,0 +1,27 @@
+.create-user-header
+{
+    margin-top:1em;
+}
+
+.create-user-box
+{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-bar
+{
+    width:75%;
+    margin:0.56em;
+}
+
+.create-user-button
+{
+    width:75%;
+    margin:1.12em;
+    background-color:#00D93D;
+    color:white;
+    font-weight: bold;
+}
