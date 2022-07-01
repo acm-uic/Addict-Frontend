@@ -13,7 +13,8 @@ export default function ChangePassword(): JSX.Element {
 
     const server = useSelector((state: apiReducerState) => state.server);
     const [searchParams, setSearchParams] = useSearchParams();
-
+    
+    // parseJwt is currently untested
     function parseJwt (token: any) {
         if (token === null) {
             return "";
