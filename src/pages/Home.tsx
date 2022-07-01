@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import API from "../util/Api"
 
-import people from '../img/people.jpg'
+import people from '../img/people.jpeg'
 import logo from '../img/logo.png'
 import "./Home.scss"
 
@@ -23,7 +23,7 @@ export default function Home(): JSX.Element {
         token = await API.getTokenFromAPI(username, password, server)
         dispatch({type: "UPDATE_USER", payload: (await API.getUser(username, token, server)).cn})
         dispatch({type: "UPDATE_KEY", payload: token})
-        navigate('/authorized')
+        navigate('/admin/users')
     }
 
     return (
