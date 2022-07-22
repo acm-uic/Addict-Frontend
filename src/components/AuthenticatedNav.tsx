@@ -1,26 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, Navigate } from "react-router-dom";
 import { apiReducerState } from "../redux/reducers/apikey";
-import API from "../util/Api";
 import './AuthenticatedNav.scss'
 import logo from '../img/logo.png'
 
 export default function AuthenticatedNav(): JSX.Element{
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const server: string = useSelector((state: apiReducerState) => state.server);
-    let username = "";
-    let password = "";
-    let token: string = useSelector((state: apiReducerState) => state.key);
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    // const server: string = useSelector((state: apiReducerState) => state.server);
+    // let username = "";
+    // let password = "";
+    // let token: string = useSelector((state: apiReducerState) => state.key);
     const loggedIn = useSelector((state: apiReducerState) => state.loggedIn)
     const loggedInUser = useSelector((state: apiReducerState) => state.user)
-  
-    async function HandleSubmit(): Promise<void> {
-        token = await API.getTokenFromAPI(username, password, server)
-        dispatch({type: "UPDATE_USER", payload: (await API.getUser(username, token, server)).cn})
-        dispatch({type: "UPDATE_KEY", payload: token})
-        navigate('/authorized')
-    }
+
 
     function GetNavbar(): JSX.Element {
         if(!loggedIn){
