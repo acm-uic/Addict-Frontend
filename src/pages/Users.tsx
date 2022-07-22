@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API, { User, Group } from "../util/Api";
 import pensolid from "../svg/pen-solid.svg"
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 import './Users.scss'
 export default function Users(): JSX.Element {
@@ -12,6 +14,7 @@ export default function Users(): JSX.Element {
     const apikey = useSelector((state: apiReducerState) => state.key);
     let [searchQuery, setSearchQuery] = useState("");
     let [users, setUsers] = useState<User[]>([]);
+    const [show, setShow] = useState(false);
 
     // Load only once
     useEffect(() => {
@@ -27,7 +30,7 @@ export default function Users(): JSX.Element {
             <td>{groups.join('\n')}</td>
             <td>{username}</td>
 
-            <td><button className="edit-button" data-bs-toggle="modal" data-bs-target="#exampleModal"><img className="pensvg" src={pensolid} alt="Edit Pen" /></button></td>
+            <td><button className="edit-button" onClick={() => setShow(true)}><img className="pensvg" src={pensolid} alt="Edit Pen" /></button></td>
             <td><div className="enable-switch"></div></td>
 
         </tr>
@@ -45,27 +48,30 @@ export default function Users(): JSX.Element {
                     <Link to="/admin/create" className="nav-item nav-link add-user"><p>Add User</p></Link>
                 </div>)
     }
+    const handleClose = () => setShow(false)
 
+    function showModal(): JSX.Element {
+        return (
+        <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+               )
+    }
 
     return (<div className="container-lg">
         {getSearchBar()}
-        <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div className="modal-body">
-        ...
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+        {showModal()}
         <table className="table">
             <thead>
                 <tr><th scope="col">NAME</th>
