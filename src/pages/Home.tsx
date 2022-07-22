@@ -4,20 +4,19 @@ import { useNavigate } from "react-router-dom";
 
 import API from "../util/Api"
 
-import people from '../img/people.jpeg'
 import logo from '../img/logo.png'
 import "./Home.scss"
 
 export default function Home(): JSX.Element {
-    const apikey = useSelector((state: apiReducerState) => state.key)
+    // const apikey = useSelector((state: apiReducerState) => state.key)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const server: string = useSelector((state: apiReducerState) => state.server);
     let username = "";
     let password = "";
     let token: string = useSelector((state: apiReducerState) => state.key);
-    const loggedIn = useSelector((state: apiReducerState) => state.loggedIn)
-    const loggedInUser = useSelector((state: apiReducerState) => state.user)
+    // const loggedIn = useSelector((state: apiReducerState) => state.loggedIn);
+    // const loggedInUser = useSelector((state: apiReducerState) => state.user);
 
     async function HandleSubmit(): Promise<void> {
         token = await API.getTokenFromAPI(username, password, server)
@@ -30,7 +29,7 @@ export default function Home(): JSX.Element {
         <div id='home'>
             <div id="login">
                 <div id="img">
-                <img src = {logo}></img>
+                <img src = {logo} alt={"ACM members"}></img>
                 </div>
                 
                 <input id='username' type='text' placeholder='Username' onChange={event => username = event.target.value}></input>
