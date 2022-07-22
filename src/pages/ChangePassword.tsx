@@ -3,7 +3,6 @@ import { apiReducerState } from "../redux/reducers/apikey";
 import API from "../util/Api";
 import { useSearchParams } from "react-router-dom";
 import "./ChangePassword.scss";
-import background from "../img/people.jpeg";
 import logo from "../img/logo.png";
 
 interface apikeyObj {
@@ -18,7 +17,7 @@ export default function ChangePassword(): JSX.Element {
     let conPass: string = ""
 
     const server = useSelector((state: apiReducerState) => state.server);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
  
     // parseJwt is currently untested
     function parseJwt(token: string) {
@@ -57,7 +56,7 @@ export default function ChangePassword(): JSX.Element {
 
             <div id="login">
                 <div id="img">
-                    <img id="logo" src={logo} /><br />
+                    <img id="logo" src={logo} alt={""}/>
                 </div>
                 <h1>Change password</h1>
                 <input type="text" placeholder={"New Password"} onChange={event => newPass = event.target.value} /><br />
