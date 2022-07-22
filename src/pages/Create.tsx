@@ -1,42 +1,48 @@
-
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API from "../util/Api";
+import './Create.scss'
+
+const UIC_DOMAIN = 'uic.edu';
+
+function getInputBar(placeholder: string, setField: Function): JSX.Element {
+    return (
+        <input type="text" 
+            onChange={event => setField(event.target.value)}
+            placeholder={placeholder}
+            className="input-bar"/>
+        );
+}
+
 export default function Create(): JSX.Element {
-    let firstName: string = ""
-    let lastName: string = ""
-    let username: string = ""
-    let email: string = ""
-    let description: string = ""
+    let username = "";
+    let firstName = "";
+    let lastName = "";
+    let password = "";
+    let verify = "";
+    let description = "";
 
     const server = useSelector((state: apiReducerState) => state.server);
     const apikey = useSelector((state: apiReducerState) => state.key);
 
     async function CreateUser() {
-        alert(await API.createUser(firstName, lastName, username, email, description, apikey, server));
+        alert(await API.createUser(firstName, lastName, username, `${username}@${UIC_DOMAIN}`, description, apikey, server));
     }
-    return (<div>
-        <h1>Create a user</h1>
 
-        <label><h2>First name:</h2></label>
-        <input type="text" onChange={event => firstName = event.target.value}/><br/>
+    return (<div className="create-user-box">
+        <h1 className="create-user-header">Create User</h1>
 
-        <label><h2>Last name:<br /></h2></label>
-        <input type="text" onChange={event => lastName = event.target.value}/><br/>
+        {getInputBar("Login Name", (val: string) => {username=val})}
+        {getInputBar("First Name", (val: string) => {firstName=val})}
+        {getInputBar("Last Name", (val: string) => {lastName=val})}
+        {getInputBar("Password (Optional)", (val: string) => {password=val})}
+        {getInputBar("Verify Password (Optional)", (val: string) => {verify=val})}
+        {getInputBar("Description", (val: string) => {description=val})}
 
-        <label><h2>Username:<br /></h2></label>
-        <input type="text" onChange={event => username = event.target.value}/><br/>
-
-        <label><h2>Email:<br /></h2></label>
-        <input type="text" onChange={event => email = event.target.value}/><br/>
+        <div onClick={CreateUser} className="button-secondary create-user-button">Create User</div>
         
-        <label><h2>Description:<br /></h2></label>
-        <input type="text" onChange={event => description = event.target.value}/><br/>
-
-        <input type="button" value="Submit" onClick={CreateUser}/>
-
-        
-        </div>)
+        </div>);
 
     
 }
