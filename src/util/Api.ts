@@ -128,9 +128,12 @@ class API {
      * @param {string} username - User's username (or netid)
      * @param {string} email - User's email
      * @param {string} description - The user's description (netid - pronouns)
+     * @param {string} password - User's password
+     * @param token
+     * @param server
      * @returns {string} The user's password
      */
-    static async createUser(fname: string, lname: string, username: string, email: string, description: string, token: string, server: string): Promise<string> {
+    static async createUser(fname: string, lname: string, username: string, email: string, description: string, token: string, server: string, password:string = ""): Promise<string> {
 
         /*inspired by several online resources including: https://www.geeksforgeeks.org/how-to-generate-a-random-password-using-javascript/ */
         const lchars:string = "abcdefghijklmnopqrstuvwxyz"
@@ -138,17 +141,17 @@ class API {
         const numbers:string = "1234567890"
         const symbols:string = "!@#$%^&*?"
         const allchars:string  = lchars + uchars + numbers + symbols
-        let password:string = ""
-        let i:number = 0
-        let location = "WebDev";
-        let randomPassLength = 15;
-
-        while(i<randomPassLength){
-            let nextIndex: number = Math.floor(Math.random()*allchars.length)
-            let nextChar:string = allchars[nextIndex]
-            password += nextChar
-            i++
+        if (password === "") {
+            let randomPassLength = 15;
+            let i:number = 0
+            while(i<randomPassLength){
+                let nextIndex: number = Math.floor(Math.random()*allchars.length)
+                let nextChar:string = allchars[nextIndex]
+                password += nextChar
+                i++
+            }
         }
+        let location = "WebDev";
 
         await axios.post(server + '/user', {
             commonName: "",
