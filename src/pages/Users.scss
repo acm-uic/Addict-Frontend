@@ -1,9 +1,14 @@
 $switch-background-disabled: #EEEEEE;
 $switch-background-enabled: #00AA00;
+
 .pensvg {
     width: 30px;
     color: #D90000;
     filter: invert(17%) sepia(35%) saturate(6194%) hue-rotate(348deg) brightness(108%) contrast(130%);
+}
+
+.modal-button {
+    margin-top: 1rem;
 }
 
 .edit-button:hover {
