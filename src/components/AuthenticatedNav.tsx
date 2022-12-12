@@ -24,7 +24,7 @@ export default function AuthenticatedNav(): JSX.Element{
 
     function GetNavbar(): JSX.Element {
         if(!loggedIn){
-            return <Navigate replace to="/admin/login" />
+            //return <Navigate replace to="/admin/login" />
         }
         return (
             <nav className='navbar navbar-expand-lg navbar-light'>

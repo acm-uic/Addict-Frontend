@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { createElement, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import { apiReducerState } from "../redux/reducers/apikey";
 import API, { User, Group } from "../util/Api";
 import pensolid from "../svg/pen-solid.svg"
+import editUserComponent from "../components/UserEdit"
 
 import './Users.scss'
 export default function Users(): JSX.Element {
@@ -12,23 +13,31 @@ export default function Users(): JSX.Element {
     const apikey = useSelector((state: apiReducerState) => state.key);
     let [searchQuery, setSearchQuery] = useState("");
     let [users, setUsers] = useState<User[]>([]);
+    let [editingUser, setEditingUser] = useState<User | null>(null);
 
     // Load only once
     useEffect(() => {
-        API.getAllUsers(server, apikey).then(users => setUsers(users)).catch(err => console.log(err))
+        //API.getAllUsers(server, apikey).then(users => setUsers(users)).catch(err => console.log(err))
+        setUsers([{dn: "dn", sAMAccountName: "samacc", whenCreated: "0", pwdLastSet: "-1", userAccountControl: "1", cn: "Test User", description: "desc", groups: []}])
     }, [])
     
-    function getTableRow(name: String, email: String, groups: Group[], username: String): JSX.Element{
-        return <tr>
-            <td>{name}</td>
-            <td>{email}</td>
-            <td>{groups.join('\n')}</td>
-            <td>{username}</td>
+    function getTableRow(user: User): JSX.Element{
+        return <tr key={user.sAMAccountName}>
+            <td>{user.cn}</td>
+            <td>{user.description}</td>
+            <td>{user.groups.join('\n')}</td>
+            <td>{user.sAMAccountName}</td>
 
-            <td><div className="edit-button"><img className="pensvg" src={pensolid} alt="Edit Pen" /></div></td>
+            <td><div className="edit-button" onClick={() => setEditingUser(user)}><img className="pensvg" src={pensolid} alt="Edit Pen" /></div></td>
             <td><div className="enable-switch"></div></td>
 
         </tr>
+    }
+
+    function showEditUserDialog(){
+        if(editingUser == null)
+            return
+        return <div className="editUserBackground" onClick={() => setEditingUser(null)}>{editUserComponent(editingUser)} </div>
     }
 
     function getSearchBar(): JSX.Element {
@@ -47,6 +56,7 @@ export default function Users(): JSX.Element {
 
     return (<div className="container-lg">
         {getSearchBar()}
+        {showEditUserDialog()}
         <table className="table">
             <thead>
                 <tr><th scope="col">NAME</th>
@@ -59,7 +69,7 @@ export default function Users(): JSX.Element {
             <tbody>
             {users.filter(
                     (user: User) => user.cn.includes(searchQuery) || user.sAMAccountName.includes(searchQuery) || user.description.includes(searchQuery)).map(
-                        (user: User) => getTableRow(user.cn, user.sAMAccountName + "@uic.edu", user.groups, user.sAMAccountName)
+                        (user: User) => getTableRow(user)
                     )}
                 
             </tbody>
